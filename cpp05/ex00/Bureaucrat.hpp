@@ -22,10 +22,10 @@ class	Bureaucrat	{
 		friend std::ostream &operator<<(std::ostream &os, Bureaucrat const &rhs);
 
 		void	setGrade(int newGrade);
+		void	gradePlus();
+		void	gradeMinus();
 
-		int	getGrade() const {
-			return _grade;
-		}
+		int		getGrade() const;
 
 		const std::string	&getName() const {
 			return _name;
@@ -33,15 +33,15 @@ class	Bureaucrat	{
 
 	class	GradeTooHigh : public std::exception {
 		public:
-			GradeTooHigh() : std::exception() {
-				std::cerr << "Grade is too damn high" << std::endl;
+			virtual const char* what() const throw() {
+				return "Grade is too high";
 			}
 	};
 
 	class	GradeTooLow : public std::exception {
 		public:
-			GradeTooLow() : std::exception() {
-				std::cerr << "Grade is too damn low" << std::endl;
+			virtual const char* what() const throw() {
+				return "Grade is too low";
 			}
 	};
 };

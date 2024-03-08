@@ -36,6 +36,56 @@ std::ostream	&operator<<(std::ostream &os, Bureaucrat const &rhs) {
 }
 
 void	Bureaucrat::setGrade(int newGrade) {
-	validGrade(newGrade);
-	_grade = newGrade;
+	try {
+		_grade = newGrade;
+		validGrade(newGrade);
+	}
+	catch (const GradeTooHigh &e) {
+		std::cerr << "grade is too damn high" << std::endl;
+		_grade = 1;
+	}
+	catch (const GradeTooLow &e) {
+		std::cerr << "grade is too damn low" << std::endl;
+		_grade = 150;
+	}
+}
+
+void	Bureaucrat::gradePlus(void) {
+	try {
+		_grade--;
+		validGrade(_grade);
+	}
+	catch (const GradeTooHigh &e) {
+		std::cerr << "cant increment grade cause it's too damn high" << std::endl;
+		_grade = 1;
+	}
+}
+
+void	Bureaucrat::gradeMinus(void) {
+	try {
+		_grade++;
+		validGrade(_grade);
+	}
+	catch (const GradeTooLow &e) {
+		std::cerr << "cant decrement grade cause it's too damn low" << std::endl;
+		_grade = 150;
+	}
+}
+
+int		Bureaucrat::getGrade() const {
+	try {
+		if (_grade < 1)
+			throw GradeTooHigh();
+		else if (_grade > 150)
+			throw GradeTooLow();
+	}
+	catch (const GradeTooHigh &e) {
+		std::cerr << "cant getGrade cause its too damn high" << std::endl;
+		return (1);
+	}
+	catch (const GradeTooLow &e) {
+		std::cerr << "cant getGrade cause its too damn low" << std::endl;
+		return (150);
+	}
+	return _grade;
 }
