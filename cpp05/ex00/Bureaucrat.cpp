@@ -8,19 +8,23 @@ void	Bureaucrat::validGrade(int grade) {
 }
 
 Bureaucrat::Bureaucrat() : _name("default") {
-	std::cout << "default bureaucrat constructor called" << std::endl;
+//	std::cout << "default bureaucrat constructor called" << std::endl;
 }
 
 Bureaucrat::Bureaucrat(const std::string name) : _name(name) {
-	std::cout << "string bureaucrat constructor called" << std::endl;
+//	std::cout << "string bureaucrat constructor called" << std::endl;
+}
+
+Bureaucrat::Bureaucrat(const std::string name, int grade) : _name(name) {
+	setGrade(grade);
 }
 
 Bureaucrat::Bureaucrat(Bureaucrat const &src) : _name(src._name), _grade(src._grade) {
-	std::cout << "copy bureaucrat constructor called" << std::endl;
+//	std::cout << "copy bureaucrat constructor called" << std::endl;
 }
 
 Bureaucrat::~Bureaucrat() {
-	std::cout << "bureaucrat destructor called" << std::endl;
+//	std::cout << "bureaucrat destructor called" << std::endl;
 }
 
 Bureaucrat	&Bureaucrat::operator=(Bureaucrat const &rhs) {
