@@ -4,6 +4,9 @@
 #include <string>
 #include <iostream>
 #include <exception>
+#include "Bureaucrat.hpp"
+
+class Bureaucrat;
 
 class	Form {
 	private:
@@ -13,6 +16,30 @@ class	Form {
 		int					_reqExec;
 	
 	public:
+		Form();
+		Form(std::string name);
+		Form(std::string name, bool signd, int reqSign, int reqExec);
+		Form(Form const &src);
+		~Form();
+
+		Form	&operator=(Form const &rhs);
+
+		friend std::ostream	&operator<<(std::ostream &os, Form const &rhs);
+
+		class gradeHigh : public std::exception {
+			public:
+				virtual const char* what() const throw() {
+					return "grade too high";
+				}
+		};
+
+		class	gradeLow : public std::exception {
+			public:
+				virtual const char* what() const throw() {
+					return "grade too low";
+				}
+		};
+
 		std::string	getName() {
 			return _name;
 		}
