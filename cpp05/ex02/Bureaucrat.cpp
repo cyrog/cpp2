@@ -1,5 +1,5 @@
 #include "Bureaucrat.hpp"
-#include "Form.hpp"
+#include "AForm.hpp"
 
 void	Bureaucrat::validGrade(int grade) {
 	if (grade < 1)
