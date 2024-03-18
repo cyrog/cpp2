@@ -1,4 +1,4 @@
-#include "Form.hpp"
+#include "AForm.hpp"
 
 Form::Form() : _name("default"), _signed(0), _reqSign(30), _reqExec(120) {
 }
@@ -58,11 +58,21 @@ void	Form::checkGrade() {
 		throw (gradeHigh());
 	else if (_reqSign > 150 || _reqExec > 150)
 		throw (gradeLow());
+	else
+		_allowed = true;
 }
 
 void	Form::signing(Bureaucrat &buro) {
 	if (buro.getGrade() > _reqSign)
 		throw (Form::gradeLow());
-	else
-		_signed = 1;
+	else {
+		_signed = true;
+		_allowed = true;
+	}
+}
+
+bool	Form::allowed(int grade) const {
+	if (grade > this->getReqSign() || grade > this->getReqExec())
+		return false;
+	return true;
 }

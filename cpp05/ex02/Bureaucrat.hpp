@@ -1,7 +1,7 @@
 #ifndef BUREAUCRAT_HPP
 # define BUREAUCRAT_HPP
 
-
+//#include "AForm.hpp"
 #include <iostream>
 #include <exception>
 
@@ -32,6 +32,7 @@ class	Bureaucrat	{
 		int		getGrade() const;
 
 		void	signForm(Form &form);
+		void	execForm(Form const &form);
 
 		const std::string	&getName() const {
 			return _name;
@@ -50,6 +51,8 @@ class	Bureaucrat	{
 				return "Grade is too low";
 			}
 	};
+
+	//void	execute(Bureaucrat const &buro) const;
 
 };
 

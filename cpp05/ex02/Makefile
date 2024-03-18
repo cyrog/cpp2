@@ -1,5 +1,5 @@
 NAME 		= buro
-SRCS 		= main.cpp Bureaucrat.cpp Form.cpp
+SRCS 		= main.cpp Bureaucrat.cpp AForm.cpp ShrubberyCreationForm.cpp RobotomyRequestForm.cpp PresidentialPardonForm.cpp
 OBJS 		= ${SRCS:.cpp=.o}
 CCXX		= @c++
 RM			= @rm -rf
@@ -21,6 +21,7 @@ clean:
 fclean: clean
 	$(RM) $(NAME)
 	@printf "\e[35;5;161m\tBinary Clean \t[ ✓ ]\n\e[39m"
+	$(RM) *shrubbery
 
 re: fclean all
 

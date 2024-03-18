@@ -3,6 +3,7 @@
 
 #include "AForm.hpp"
 #include <string>
+#include <fstream>
 
 class	ShrubberyCreationForm : public Form {
 	private:
@@ -16,6 +17,12 @@ class	ShrubberyCreationForm : public Form {
 		ShrubberyCreationForm(ShrubberyCreationForm const &src);
 
 		ShrubberyCreationForm	&operator=(ShrubberyCreationForm const &rhs);
+
+		std::string	getTarget() {
+			return this->_target;
+		}
+
+		void	execute(Bureaucrat const &buro) const;
 };
 
 #endif

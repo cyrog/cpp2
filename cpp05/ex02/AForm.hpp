@@ -14,6 +14,8 @@ class	Form {
 		bool				_signed;
 		int					_reqSign;
 		int					_reqExec;
+
+		bool				_allowed;
 	
 	public:
 		Form();
@@ -42,6 +44,8 @@ class	Form {
 
 		void	checkGrade();
 		void	signing(Bureaucrat &buro);
+		
+		bool	allowed(int grade) const;
 
 		std::string	getName() const {
 			return this->_name;
@@ -58,6 +62,12 @@ class	Form {
 		int			getReqExec() const {
 			return this->_reqExec;
 		}
+
+		bool		getAllowed() const {
+			return this->_allowed;
+		}
+
+		virtual void	execute(Bureaucrat const &buro) const = 0;
 };
 
 #endif

@@ -1,10 +1,13 @@
 
 #include "Bureaucrat.hpp"
-#include "Form.hpp"
+#include "AForm.hpp"
+#include "ShrubberyCreationForm.hpp"
+#include "RobotomyRequestForm.hpp"
+#include "PresidentialPardonForm.hpp"
 
 int	main()
 {
-	std::cout << "Test with grade 2 and needed grade to sign 30" << std::endl;
+	/*std::cout << "Test with grade 2 and needed grade to sign 30" << std::endl;
 	try {
 		Bureaucrat	prs1 = Bureaucrat("John", 2);
 		Form		form1 = Form("request");
@@ -46,4 +49,37 @@ int	main()
 	catch(const std::exception &e) {
 		std::cerr << e.what() << std::endl;
 	}
+	*/
+	Bureaucrat	boss("boss", 1);
+	Bureaucrat	esclave("esclave", 146);
+
+	ShrubberyCreationForm	shrubForm("sus");
+
+	boss.signForm(shrubForm);
+	esclave.signForm(shrubForm);
+	boss.execForm(shrubForm);
+	esclave.execForm(shrubForm);
+	std::cout << "___________________" << std::endl;
+
+	RobotomyRequestForm		roboForm("Robo");
+
+	boss.signForm(roboForm);
+	esclave.signForm(roboForm);
+	boss.execForm(roboForm);
+	esclave.execForm(roboForm);
+
+	std::cout << "___________________" << std::endl;
+
+	PresidentialPardonForm	prez("rpz");
+
+	boss.signForm(prez);
+	esclave.signForm(prez);
+	boss.execForm(prez);
+	esclave.execForm(prez);
+
+
+
+
+
+
 }
