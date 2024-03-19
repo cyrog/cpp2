@@ -11,9 +11,9 @@ class Bureaucrat;
 class	Form {
 	private:
 		std::string	const	_name;
-		bool				_signed;
-		int					_reqSign;
-		int					_reqExec;
+		bool			_signed;
+		int		const	_reqSign;
+		int		const	_reqExec;
 
 		bool				_allowed;
 	
@@ -26,7 +26,6 @@ class	Form {
 
 		Form	&operator=(Form const &rhs);
 
-		friend std::ostream	&operator<<(std::ostream &os, Form const &rhs);
 
 		class gradeHigh : public std::exception {
 			public:
@@ -66,8 +65,11 @@ class	Form {
 		bool		getAllowed() const {
 			return this->_allowed;
 		}
+		
 
 		virtual void	execute(Bureaucrat const &buro) const = 0;
 };
+
+	std::ostream	&operator<<(std::ostream &os, Form const &rhs);
 
 #endif

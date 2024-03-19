@@ -23,7 +23,7 @@ class	Bureaucrat	{
 
 		Bureaucrat		&operator=(Bureaucrat const &rhs);
 
-		friend std::ostream &operator<<(std::ostream &os, Bureaucrat const &rhs);
+		std::ostream &operator<<(std::ostream &os, Bureaucrat const &rhs);
 
 		void	setGrade(int newGrade);
 		void	gradePlus();
