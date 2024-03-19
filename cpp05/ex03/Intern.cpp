@@ -18,10 +18,10 @@ Intern	&Intern::operator=(Intern const &rhs) {
 
 Form	*Intern::makeForm(std::string name, std::string target) {
 	Form	*myForm = NULL;
-	Form	*listFuncs[] = { Intern::formSCF(target), Intern::formRRF(target), Intern::formPPF(std::string target) };
+	Form	*listFuncs[] = { Intern::formSCF(target), Intern::formRRF(target), Intern::formPPF(target) };
 	std::string	listForms[] = { "ShrubberyCreationForm", "RobotomyRequestForm", "PresidentialPardonForm" };
 
-	for (i = 0; i < 3; i++) {
+	for (int i = 0; i < 3; i++) {
 		if (name == listForms[i]) {
 			std::cout << "l'esclave created the form: " << name << std::endl;
 			myForm = listFuncs[i];

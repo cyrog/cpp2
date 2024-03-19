@@ -2,6 +2,10 @@
 # define INTERN_HPP
 
 #include "AForm.hpp"
+#include "ShrubberyCreationForm.hpp"
+#include "RobotomyRequestForm.hpp"
+#include "PresidentialPardonForm.hpp"
+
 
 class	Intern {
 	public:
@@ -14,13 +18,13 @@ class	Intern {
 		Form	*makeForm(std::string formName, std::string formTarget);
 
 		Form	*formSCF(std::string target) {
-			return new ShrubberyCreationForm(target);
+			return (new ShrubberyCreationForm(target));
 		}
 		Form	*formRRF(std::string target) {
-			return new RobotomyRequestForm(target);
+			return (new RobotomyRequestForm(target));
 		}
 		Form	*formPPF(std::string target) {
-			return new PresidentialPardonForm(target);
+			return (new PresidentialPardonForm(target));
 		}
 
 		class	formException : public std::exception {
