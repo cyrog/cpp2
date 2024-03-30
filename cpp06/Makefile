@@ -1,9 +1,9 @@
-NAME 		= buro
-SRCS 		= ScalarConverter.cpp main.cpp
+NAME 		= cast
+SRCS 		= main.cpp ScalarConverter.cpp
 OBJS 		= ${SRCS:.cpp=.o}
 CCXX		= @c++
 RM			= @rm -rf
-CXXFLAGS	= -Wall -Wextra -Werror -std=c++98
+CXXFLAGS	= -Wall -Wextra #-Werror -std=c++98
 
 .cpp.o :
 	$(CCXX) -c $(CXXFLAGS) -o $@ $<

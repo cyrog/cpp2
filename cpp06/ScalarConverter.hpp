@@ -3,9 +3,11 @@
 
 #include <iostream>
 #include <string>
+#include <stdlib.h>
 #include <climits>
 #include <iomanip>
 #include <cstring>
+#include <sstream>
 
 
 class	ScalarConverter	{
@@ -16,20 +18,20 @@ class	ScalarConverter	{
 
 		ScalarConverter	&operator=(ScalarConverter const &rhs);
 
-		void	convChar(char nb);
-		void	convInt(int nb);
-		void	convFloat(float nb);
-		void	convDouble(double nb);
+		static void	convChar(char nb);
+		static void	convInt(int nb);
+		static void	convFloat(float nb);
+		static void	convDouble(double nb);
 
-		void	printChar(char nb);
-		void	printInt(int nb);
-		void	printFloat(float nb);
-		void	printDouble(double nb);
+		static void	printChar(char nb);
+		static void	printInt(int nb);
+		static void	printFloat(float nb);
+		static void	printDouble(double nb);
 
-		void	printSpe(std::string spe);
-		void	printErr(std::string msg);
+		static void	printSpe(std::string spe);
+		static void	printErr(std::string msg);
 		
-		void	getType(std::string str);
+		static void	getType(std::string str);
 	
 	public:
 		static void	convert(std::string str);

@@ -14,18 +14,21 @@ ScalarConverter	&ScalarConverter::operator=(ScalarConverter const &rhs) {
 }
 
 void	ScalarConverter::convChar(char nb) {
-	if ((nb >= 0 && nb < 32) || nb == 127)
+	std::cout << "number: " << nb << std::endl;
+
+	if ((nb < 32 || nb == 127) && !(nb >= '0' && nb <= '9'))
 		std::cout << "char: non displayable character" << std::endl;
-	if (nb < 0 || nb > 126)
+	if (nb > 127)
 		std::cout << "char: impossible" << std::endl;
 	else
 		std::cout << "char: " << nb << std::endl;
 }
 
 void	ScalarConverter::convInt(int nb) {
-	if (nb < INT_MAX && nb > INT_MIN)
+	if (nb > INT_MAX || nb < INT_MIN)
+		std::cout << "int: out of range" << std::endl;
+	else
 		std::cout << "int: " << nb << std::endl;
-	std::cout << "int: out of range" << std::endl;
 }
 
 void	ScalarConverter::convFloat(float nb) {
@@ -72,42 +75,46 @@ void	ScalarConverter::printSpe(std::string spe) {
 }
 
 void	ScalarConverter::printErr(std::string msg) {
-	std::cerr << "errpr: " << msg << std::endl;
+	std::cout << "error: " << msg << std::endl;
 }
 
 void	ScalarConverter::getType(std::string str) {
-	bool	isDouble = false;
-	bool	isFloat = false;
+	bool			isDouble = false;
+	bool			isFloat = false;
+	std::stringstream	ss(str);
 
 	if (str.empty())
 		return printErr("no input");
-	if (std::isprint(str[0]) && str[0] != '-')
+	if (std::isalpha(str[0]) && str.size() == 1)
 		return printChar(str[0]);
 	for (int i = 0; i < (int)str.length(); i++) {
-		if (i == 0 && str[0] == '-')
+		if (i == 0 && (str[i] == '-' || str[i] == '+'))
 			i++;
 		if (std::isdigit(str[i]))
 			continue;
 		if (str[i] == '.' && !isDouble)
-			isDouble == true;
-		if (str[i] == 'f' && isDouble == true && isFloat == false) {
-			isDouble == false;
-			isFloat == true;
+			isDouble = true;
+		else if (str[i] == 'f' && isDouble == true && isFloat == false) {
+			isDouble = false;
+			isFloat = true;
 		}
 		else
 			return printErr("conversion impossible");
 	}
 	if (isDouble) {
-		double d = std::stod(str);
-		printDouble(d);
+		//double d = std::stod(str); //stof is c++11 sadge
+		//printDouble(d);
+		printDouble(atof(str.c_str()));
 	}
 	else if (isFloat) {
-		float f = std::stof(str);
-		printFloat(f);
+		//float f = std::stof(str);
+		//printFloat(f);
+		printFloat(atof(str.c_str()));
 	}
 	else {
-		int i = str::stoi(str);
-		printInt(i);
+		//int i = str::stoi(str); //c++11 aswell
+		//printInt(i);
+		printInt(atoi(str.c_str()));
 	}
 }
 
@@ -117,8 +124,8 @@ void	ScalarConverter::convert(std::string str) {
 
 	bool	isSpe = false;
 
-	if (strcmp(str.c_str(), "nan") || strcmp(str.c_str(), "nanf")) {
-		printErr("not a number");
+	if (std::isalpha(str[0]) && std::isalpha(str[1]) && strcmp(str.c_str(), "nan") && strcmp(str.c_str(), "nanf")) {
+		return printErr("not a number");
 	}
 	
 	for (int i = 0; i < 3; i++) {
