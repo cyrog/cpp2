@@ -9,11 +9,7 @@ Form::Form(std::string name) : _name(name), _signed(0), _reqSign(30), _reqExec(1
 Form::Form(Form const &src) : _name(src._name), _signed(src._signed), _reqSign(src._reqSign), _reqExec(src._reqExec) {
 }
 
-Form::Form(std::string name, bool signd, int reqSign, int reqExec) : _name(name) {
-	_signed = signd;
-	_reqSign = reqSign;
-	_reqExec = reqExec;
-
+Form::Form(std::string name, bool signd, int reqSign, int reqExec) : _name(name), _signed(signd), _reqSign(reqSign), _reqExec(reqExec) {
 	checkGrade();
 }
 
@@ -29,26 +25,14 @@ Form	&Form::operator=(Form const &rhs) {
 
 std::ostream &operator<<(std::ostream &os, Form const &rhs) {
 
-	//test friend
-	os << "Form name: " << rhs._name << std::endl;
-	if (rhs._signed == 0)
-		os << "Form state: " << "unsigned" << std::endl;
-	else if (rhs._signed == 1)
-		os << "Form state: " << "signed" << std::endl;
-	os << "Grade required to sign: " << rhs._reqSign << std::endl;
-	os << "Grade required to exec: " << rhs._reqExec << std::endl;
-	os << "_________________________" << std::endl;
-	
-	/*
-	 * os << "Form name: " << rhs.getName() << std::endl;
+	os << "Form name: " << rhs.getName() << std::endl;
 	if (rhs.getSigned() == 0)
 		os << "Form state: " << "unsigned" << std::endl;
 	else if (rhs.getSigned() == 1)
 		os << "Form state: " << "signed" << std::endl;
-	os << "Grade required to sign: " << rhs._reqSign << std::endl;
-	os << "Grade required to exec: " << rhs._reqExec << std::endl;
+	os << "Grade required to sign: " << rhs.getReqSign() << std::endl;
+	os << "Grade required to exec: " << rhs.getReqExec() << std::endl;
 	os << "_________________________" << std::endl;
-	*/
 
 	return os;
 }
