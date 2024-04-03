@@ -47,9 +47,9 @@ class	Bureaucrat	{
 				return "Grade is too low";
 			}
 	};
+};
 
 	std::ostream &operator<<(std::ostream &os, Bureaucrat const &rhs);
 
-};
 
 #endif
