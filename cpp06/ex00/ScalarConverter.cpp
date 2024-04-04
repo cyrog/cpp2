@@ -14,11 +14,11 @@ ScalarConverter	&ScalarConverter::operator=(ScalarConverter const &rhs) {
 }
 
 void	ScalarConverter::convChar(char nb) {
-	std::cout << "number: " << nb << std::endl;
+	//std::cout << "number: " << nb << std::endl;
 
 	if ((nb < 32 || nb == 127) && !(nb >= '0' && nb <= '9'))
 		std::cout << "char: non displayable character" << std::endl;
-	if (nb > 127)
+	else if (nb < 0 || nb > 127)
 		std::cout << "char: impossible" << std::endl;
 	else
 		std::cout << "char: " << nb << std::endl;
@@ -26,7 +26,7 @@ void	ScalarConverter::convChar(char nb) {
 
 void	ScalarConverter::convInt(int nb) {
 	if (nb > INT_MAX || nb < INT_MIN)
-		std::cout << "int: out of range" << std::endl;
+		std::cout << "int: out of range" << nb << std::endl;
 	else
 		std::cout << "int: " << nb << std::endl;
 }
@@ -78,13 +78,23 @@ void	ScalarConverter::printErr(std::string msg) {
 	std::cout << "error: " << msg << std::endl;
 }
 
+void	ScalarConverter::printOutrange(std::string msg) {
+	std::cout << "char: impossible" << std::endl;
+	std::cout << "int: " << msg << std::endl;
+	std::cout << "float: " << msg << std::endl;
+	std::cout << "double: " << msg << std::endl;
+}
+
 void	ScalarConverter::getType(std::string str) {
 	bool			isDouble = false;
 	bool			isFloat = false;
-	std::stringstream	ss(str);
+	//std::stringstream	ss(str);
 
 	if (str.empty())
 		return printErr("no input");
+	if (str.size() > 10 || (str.size() == 10 && str > "2147483647") 
+			|| (str.size() == 11 && str[0] == '-' && str.substr(1) > "2147483648"))
+		return printOutrange("out of range");
 	if (std::isalpha(str[0]) && str.size() == 1)
 		return printChar(str[0]);
 	for (int i = 0; i < (int)str.length(); i++) {
@@ -104,17 +114,20 @@ void	ScalarConverter::getType(std::string str) {
 	if (isDouble) {
 		//double d = std::stod(str); //stof is c++11 sadge
 		//printDouble(d);
-		printDouble(atof(str.c_str()));
+		double d = atof(str.c_str());
+		printDouble(d);
 	}
 	else if (isFloat) {
 		//float f = std::stof(str);
 		//printFloat(f);
-		printFloat(atof(str.c_str()));
+		float f = atof(str.c_str());
+		printFloat(f);
 	}
 	else {
 		//int i = str::stoi(str); //c++11 aswell
 		//printInt(i);
-		printInt(atoi(str.c_str()));
+		int	i = atoi(str.c_str());
+		printInt(i);
 	}
 }
 

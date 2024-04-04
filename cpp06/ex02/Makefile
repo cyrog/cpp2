@@ -1,4 +1,4 @@
-NAME 		= based
+NAME 		= identify
 SRCS 		= main.cpp Base.cpp
 OBJS 		= ${SRCS:.cpp=.o}
 CCXX		= @c++

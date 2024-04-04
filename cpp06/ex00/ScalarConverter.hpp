@@ -30,6 +30,7 @@ class	ScalarConverter	{
 
 		static void	printSpe(std::string spe);
 		static void	printErr(std::string msg);
+		static void	printOutrange(std::string msg);
 		
 		static void	getType(std::string str);
 	
