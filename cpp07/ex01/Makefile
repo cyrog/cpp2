@@ -1,4 +1,4 @@
-NAME 		= whatever
+NAME 		= iter
 SRCS 		= main.cpp
 OBJS 		= ${SRCS:.cpp=.o}
 CCXX		= @c++
