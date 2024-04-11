@@ -28,18 +28,17 @@ class	Array {
 					return ("Out of bounds");
 				}
 		};
-
 };
 
 template <typename T>
 Array<T>::Array() {
-	this->_arr = NULL;
-	this->_size = 0;
+	_arr = NULL;
+	_size = 0;
 }
 
 template <typename T>
 Array<T>::Array(unsigned int n) : _size(n) {
-	this->_arr = new T(this->_size);
+	_arr = new T[_size];
 }
 
 template <typename T>
@@ -56,7 +55,7 @@ Array<T>	&Array<T>::operator=(Array const &rhs) {
 	if (this->_arr)
 		delete[] this->_arr;
 	this->_size = rhs._size;
-	this->_arr = new T(this->rhs._size);
+	this->_arr = new T(this->_size);
 	for (unsigned int i; i < rhs._size; i++) {
 		this->_arr[i] = rhs._arr[i];
 	}
@@ -65,7 +64,7 @@ Array<T>	&Array<T>::operator=(Array const &rhs) {
 
 template <typename T>
 T	&Array<T>::operator[](unsigned int const i) {
-	if (i < 0 || i > this->_size)
+	if (i < 0 || i >= this->_size)
 		throw IndexOutOfBounds();
 	return (this->_arr[i]);
 
