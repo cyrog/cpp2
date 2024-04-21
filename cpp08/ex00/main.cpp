@@ -1,22 +1,23 @@
 #include "easyfind.hpp"
 
 int	main(void) {
-	
+
+	std::cout << std::endl << " ____ first test ____ " << std::endl << std::endl; 
+
 	std::vector<int> test;
-	//std::list<int> test;
-	
 	test.push_back(12);
+	test.push_back(13);
+	test.push_back(92);
+	test.push_back(66);
 	test.push_back(42);
-	test.push_back(666);
-	test.push_back(1024);
-	test.push_back(2048);
-	easyfind(test, 12);
-	//easyfind(test, 22);
-	
+	easyfind(test, 66);
+
+	std::cout << std::endl << " ____ smth else ____ " << std::endl;
+
 	try {
-		easyfind(test, 46);
+		easyfind(test, 43);
 	}
 	catch (const std::exception &e) {
-		std::cerr << e.what() << '\n';
+		std::cerr << std::endl << e.what() << std::endl;
 	}
 }

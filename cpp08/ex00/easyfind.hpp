@@ -1,29 +1,32 @@
 #ifndef EASYFIND_HPP
 # define EASYFIND_HPP
 
-#include <map>
-#include <vector>
 #include <iostream>
 #include <algorithm>
-#include <stdexcept>
+#include <vector>
+#include <list>
+#include <map>
 
-class	NotFoundExcept : public std::exception {
+class	notFound : public std::exception {
 
-	const char *what() const throw() {
-		return ("No occurence found");
-	}
+	public:
+		virtual const char* what() const throw() {
+			return "not found";
+		}
 };
 
 template<typename T>
-typename	T::iterator	easyfind(T &container, int nb) {
+void	easyfind(T &container, int nb) {
 
-	typename	T::iterator it;
+	typename T::iterator it;
 
 	it = std::find(container.begin(), container.end(), nb);
 	if (it == container.end())
-		throw NotFoundExcept();
-	std::cout << "Occurence of " << nb << " found in pos: " << (std::distance(container.begin(), it) + 1) << std::endl;
-	return (it);
+		throw notFound();
+	//std::cout << *it << std::endl; //prints the found value
+	std::cout <<(it - container.begin()) << std::endl;
+	//std::cout << (std::distance(container.begin(), it)) << std::endl; //works as well, just different
 }
+
 
 #endif
