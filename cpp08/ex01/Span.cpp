@@ -24,8 +24,6 @@ void	Span::addNumber(int i) {
 
 int		Span::getNumber(int index) {
 	return _nb[index];
-
-
 }
 
 unsigned int		Span::shortestSpan(void) {
@@ -81,6 +79,12 @@ void	Span::addRange(std::vector<int>::iterator begin, std::vector<int>::iterator
 		throw std::overflow_error("max size reached");
 	}
 	_nb.insert(_nb.end(), begin, end);
+}
+
+void	Span::printAll(void) {
+	for (unsigned int i = 0; i < _nb.size(); i++) {
+		std::cout << _nb[i] << std::endl;
+	}
 }
 
 /*void	Span::genRandom(unsigned int const size) {

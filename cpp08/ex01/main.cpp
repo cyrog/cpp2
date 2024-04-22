@@ -29,12 +29,14 @@ int	main(void) {
 	int	newSize = 99;
 	Span big(newSize);
 	try {
+
 		std::vector<int> bigtest;
-		bigtest.push_back(13);
-		bigtest.push_back(12);
-		bigtest.push_back(18);
-		bigtest.push_back(19);
-		big.addRange(bigtest.begin(),  bigtest.end());
+
+		big.addNumber(2);
+		big.addNumber(7);
+		big.addNumber(42);
+		big.addNumber(66);
+		big.addRange(bigtest.begin(), bigtest.end());
 	}
 	catch (Span::tooShort &e) {
 		std::cerr << e.what() << std::endl;
@@ -45,4 +47,5 @@ int	main(void) {
 
 	big.shortestSpan();
 	big.longestSpan();
+	big.printAll();
 }

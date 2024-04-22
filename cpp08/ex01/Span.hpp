@@ -28,8 +28,7 @@ class	Span {
 		unsigned int		shortestSpan(void);
 		unsigned int		longestSpan(void);
 
-		void	printMax();
-		void	printMin();
+		void	printAll(void);
 
 		class	tooShort : public std::exception {
 			public:
