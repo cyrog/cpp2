@@ -16,12 +16,10 @@ RPN	&RPN::operator=(RPN const &rhs) {
 }
 
 
-// Fonction pour vérifier si une chaîne est un opérateur
 bool RPN::isOperator(const std::string &token) {
     return token == "+" || token == "-" || token == "*" || token == "/";
 }
 
-// Fonction pour effectuer les opérations arithmétiques
 int RPN::performOperation(const std::string &operatorToken, int operand1, int operand2) {
     if (operatorToken == "+")
 		return operand1 + operand2;
@@ -38,7 +36,6 @@ int RPN::performOperation(const std::string &operatorToken, int operand1, int op
     throw std::runtime_error("Invalid operator");
 }
 
-// Fonction principale pour évaluer l'expression RPN
 int RPN::evaluateRPN(const std::string &expression) {
     std::stack<int> stack;
     std::istringstream iss(expression);
