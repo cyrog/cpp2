@@ -23,9 +23,12 @@ bool RPN::isOperator(const std::string &token) {
 
 // Fonction pour effectuer les opérations arithmétiques
 int RPN::performOperation(const std::string &operatorToken, int operand1, int operand2) {
-    if (operatorToken == "+") return operand1 + operand2;
-    if (operatorToken == "-") return operand1 - operand2;
-    if (operatorToken == "*") return operand1 * operand2;
+    if (operatorToken == "+")
+		return operand1 + operand2;
+    if (operatorToken == "-")
+		return operand1 - operand2;
+    if (operatorToken == "*")
+		return operand1 * operand2;
     if (operatorToken == "/") {
         if (operand2 == 0) {
             throw std::runtime_error("Division by zero");
